@@ -1,0 +1,7 @@
+id,campaign_name,sent,delivered,read,failed,total,create_at,template_name
+d7021fff-f8df-4d79-af71-7db6c89bda9b,Avinash,14,10,4,59,73,2023-04-27,temp8
+111e4681-eb9d-4595-82d7-1e4532daa3d1,Avinash,25,25,8,27,52,2023-04-24,temp1
+55c7f04d-4d62-47f2-814e-766d2abfcd5e,Avinash,91,59,35,86,177,2023-04-17,temp10
+bb5ab63b-1926-498d-82f1-4b7e2b024efe,Avinash,59,3,3,55,114,2023-04-03,temp8
+04b2d2e5-405e-491d-8a68-e149b5931809,Avinash,83,72,32,93,176,2023-03-15,temp2
+d8e2386c-8f7b-4db1-a0fa-e94ec8f2d373,Avinash,80,24,6,99,179,2023-03-05,temp5

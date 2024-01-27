@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'myapp/css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <title>Candidate Details</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="alert-primary text-center p-3">Candidate Details</h1>
+        
+        <div class="row">
+            <div class="col-sm-10 shadow p-5 offset-sm-1">
+                <a href="{% url 'send_email' candidate.id %}" id="prin1" class="btn btn-primary" style="float: right; margin: 10px;  ">Send email</a> 
+                <a href="{% url 'update_resume' candidate.id %}" id="prin2" class="btn btn-primary" style="float: right; margin: 10px; ">Update</a> 
+                <a href="#" id="prin3" class="btn btn-primary" onclick="myFunction()" style="float: right; margin: 10px; color: white;">Print</a> 
+                <a href="{% url 'AllCandidates'%}" id="prin4" class="btn btn-danger" style="float: left; margin: 10px; ">Back</a> 
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="col-md-6">Id:</th>
+                            <td class="col-md-6">{{candidate.id}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-6">Select category:</th>
+                            <td class="col-md-6">{{candidate.select_category}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-6">Name:</th>
+                            <td class="col-md-6">{{candidate.name}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-6">Mobile:</th>
+                            <td class="col-md-6">{{candidate.mobile}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-6">Email:</th>
+                            <td class="col-md-6">{{candidate.email}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-6">Gender:</th>
+                            <td class="col-md-6">{{candidate.gender}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-6">Current location:</th>
+                            <td class="col-md-6">{{candidate.current_location}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-6">Highest qualification:</th>
+                            <td class="col-md-6">{{candidate.highest_qualification}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-6">Experience:</th>
+                            <td class="col-md-6">{{candidate.experience}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-6">Currnet CTC:</th>
+                            <td class="col-md-6">{{candidate.currnet_ctc}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-6">Expected CTC:</th>
+                            <td class="col-md-6">{{candidate.expected_ctc}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-6">Working status:</th>
+                            <td class="col-md-6">{{candidate.working_status}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-6">Notice period:</th>
+                            <td class="col-md-6">{{candidate.notice_period}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-6">Company name:</th>
+                            <td class="col-md-6">{{candidate.company_name}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-6">Skill:</th>
+                            <td class="col-md-6">{{candidate.skill}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-6">Key skill:</th>
+                            <td class="col-md-6">{{candidate.key_skill}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-6">Follow status:</th>
+                            <td class="col-md-6">{{candidate.follow_status}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-6">Selection status:</th>
+                            <td class="col-md-6">{{candidate.selection_status}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-6">Date:</th>
+                            <td class="col-md-6">{{candidate.date}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-6">Resume</th>
+                            <td class="col-md-6"><a href="{{candidate.my_file.url}}">{{candidate.my_file}}</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="col-md-6">Remark</th>
+                            <td class="col-md-6">{{candidate.remark}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- <div class="col-12"> -->
+               
+                <!-- </div> -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            $( "#datepicker" ).datepicker();
+        });
+        const myFunction= ()=>{
+            var pageButton1 = document.getElementById('prin1')
+            var pageButton2 = document.getElementById('prin2')
+            var pageButton3 = document.getElementById('prin3')
+            var pageButton4 = document.getElementById('prin4')
+            pageButton1.style.visibility = "hidden";
+            pageButton2.style.visibility = "hidden";
+            pageButton3.style.visibility = "hidden";
+            pageButton4.style.visibility = "hidden";
+            window.print()
+            pageButton1.style.visibility = "visible";
+            pageButton2.style.visibility = "visible";
+            pageButton3.style.visibility = "visible";
+            pageButton4.style.visibility = "visible";
+        }
+        
+
+
+
+    </script>
+</body>
+</html>
+

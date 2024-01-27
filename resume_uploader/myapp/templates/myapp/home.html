@@ -1,0 +1,265 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'myapp/css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Job Application Form</h1>
+    </header>
+    <div class="formbold-main-wrapper">
+        
+  <div class="formbold-form-wrapper">
+     
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="formbold-input-flex">
+          <div>
+              <label for="select_category" class="formbold-form-label" > Select Category </label>
+              <select id="select_category" name="select_category" onchange="updateSkills()" class="formbold-form-input">
+                <option value="none">----------</option>
+                <option value="Python Developer">Python Developer</option>
+                <option value="Web Designer">Web Designer</option>
+                <option value="Graphic Designer">Graphic Designer</option>
+            </select>
+          </div>
+          <div>
+              <label for="name" class="formbold-form-label"> Fullname </label>
+              <input
+              type="text"
+              id="name" name="name"
+              placeholder="fullname"
+              class="formbold-form-input"
+              />
+          </div>
+        </div>
+
+        <div class="formbold-input-flex">
+          <div>
+              <label for="email" class="formbold-form-label"> Mail </label>
+              <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="example@mail.com"
+              class="formbold-form-input"
+              />
+          </div>
+          <div>
+              <label for="mobile" class="formbold-form-label"> Phone </label>
+              <input
+              type="text" id="mobile" name="mobile"
+              placeholder="(+91) 955-115-8789"
+              class="formbold-form-input"
+              />
+          </div>
+        </div>
+
+        <div class="formbold-input-flex">
+          <div>
+              <label for="current_location"class="formbold-form-label"> Current Location </label>
+              <input
+              type="text" id="current_location" name="current_location"
+              placeholder="location"
+              class="formbold-form-input"
+              />
+          </div>
+          <div class="formbold-input-radio-wrapper">
+            <label class="formbold-form-label"> Gender </label>
+
+            <div class="formbold-radio-flex">
+              <div class="formbold-radio-group">
+                <label class="formbold-radio-label">
+                  <input class="formbold-input-radio"type="radio" id="male" name="gender" value="male">
+                  Male
+                  <span class="formbold-radio-checkmark"></span>
+                </label>
+              </div>
+
+              <div class="formbold-radio-group">
+                <label class="formbold-radio-label">
+                  <input class="formbold-input-radio" type="radio" id="female" name="gender" value="female">
+                  Female
+                  <span class="formbold-radio-checkmark"></span>
+                </label>
+              </div>
+
+             
+            </div>
+        </div>
+        </div>
+        <div class="formbold-input-flex">
+          <div>
+              <label for="highest_qualification" class="formbold-form-label"> Highest Qualification </label>
+              <input
+              type="text" id="highest_qualification" name="highest_qualification"
+              placeholder="qualification"
+              class="formbold-form-input"
+              />
+          </div>
+          <div>
+              <label for="experience" class="formbold-form-label"> Experience </label>
+              <input
+              type="text" id="experience" name="experience"
+              placeholder="experience"
+              class="formbold-form-input"
+              />
+          </div>
+        </div>
+        <div class="formbold-input-flex">
+          <div>
+              <label for="currnet_ctc" class="formbold-form-label"> Current CTC </label>
+              <input
+              type="text" id="currnet_ctc" name="currnet_ctc"
+              placeholder="experience"
+              class="formbold-form-input"
+              />
+          </div>
+          <div>
+              <label for="expected_ctc" class="formbold-form-label"> Expected CTC </label>
+              <input
+              type="text" id="expected_ctc" name="expected_ctc"
+              placeholder="expected_ctc"
+              class="formbold-form-input"
+              />
+          </div>
+        </div>
+        <div class="formbold-input-flex">
+           <div>
+              <label for="working_status" class="formbold-form-label" > Working status </label>
+              <select id="working_status" name="working_status" class="formbold-form-input">
+                <option value="none">----------</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+          </div>
+          <div>
+              <label for="notice_period" class="formbold-form-label"> Notice Period </label>
+              <input
+              type="text" id="notice_period" name="notice_period"
+              placeholder="notice period"
+              class="formbold-form-input"
+              />
+          </div>
+        </div>
+        <div class="formbold-input-flex">
+          <div>
+              <label for="company_name" class="formbold-form-label"> Company name </label>
+              <input
+              type="text" id="company_name" name="company_name"
+              placeholder="company name"
+              class="formbold-form-input"
+              />
+          </div>
+           <div>
+              <label for="follow_status" class="formbold-form-label" > Followup status </label>
+              <select id="follow_status" name="follow_status" class="formbold-form-input">
+                <option value="none">----------</option>
+                <option value="not_started">Not Started</option>
+                <option value="in_progress">In Progress</option>
+                <option value="completed">Completed</option>
+            </select>
+          </div>
+        </div>
+        <div class="formbold-input-flex">
+          <div>
+              <label for="date" class="formbold-form-label"> Interview Date </label>
+              <input
+              type="date" id="date" name="date"
+              class="formbold-form-input"
+              />
+          </div>
+          <div>
+              <label for="selection_status" class="formbold-form-label" >Selection Status </label>
+              <select id="selection_status" name="selection_status" class="formbold-form-input">
+                <option value="none" >----------</option>
+                <option value="pending" >Pending</option>
+                <option value="accept">Accept</option>
+                <option value="rejected">Rejected</option>
+            </select>
+          </div>
+         
+        </div>
+        <div class="formbold-input-flex">
+          <div>
+            <label for="skill" class="formbold-form-label">Skill</label>
+            <select id="skill" name="skill" class="formbold-form-input" multiple>
+                <!-- Options will be dynamically updated based on selected category -->
+            </select>
+          </div>
+          <div>
+              <label for="key_skill" class="formbold-form-label">Key Skill</label>
+            <select id="key_skill" name="key_skill" class="formbold-form-input" multiple>
+                <!-- Options will be dynamically updated based on selected category -->
+            </select>
+          </div>
+        </div>
+         <div>
+              <label for="my_file" class="formbold-form-label"> Resume </label>
+              <input
+             type="file" id="my_file" name="my_file"
+              class="formbold-form-input"
+              />
+          </div>
+        <div>
+            <label for="remark" class="formbold-form-label"> Remark </label>
+            <textarea
+                rows="6"
+                id="remark" name="remark"
+                placeholder="Type your message"
+                class="formbold-form-input"
+            ></textarea>
+        </div>
+
+        <button class="formbold-btn">
+            Submit Details
+        </button>
+    </form>
+  </div>
+</div>
+ <script>
+        function updateSkills() {
+            var category = document.getElementById("select_category").value;
+            var keySkillSelect = document.getElementById("key_skill");
+            var skillSelect = document.getElementById("skill");
+            
+            // Clear existing options
+            keySkillSelect.innerHTML = "";
+            skillSelect.innerHTML = "";
+
+            // Add options based on the selected category
+            if (category === "Python Developer") {
+                addOption(keySkillSelect, "Python", "Python");
+                addOption(keySkillSelect, "Django", "Django");
+                addOption(keySkillSelect, "Rest API", "Rest API");
+
+                addOption(skillSelect, "Python", "Python");
+                addOption(skillSelect,"Django", "Django");
+                addOption(skillSelect,"Rest API", "Rest API");
+                // Add other Python Developer skills and general skills as needed
+            } else if (category === "Web Designer") {
+                addOption(keySkillSelect, "HTML5 & CSS", "HTML5 & CSS");
+                addOption(keySkillSelect, "Bootstrap", "Bootstrap");
+                addOption(keySkillSelect, "Javascript", "Javascript");
+
+                addOption(skillSelect, "HTML5 & CSS", "HTML5 & CSS");
+                addOption(skillSelect, "Bootstrap", "Bootstrap");
+                addOption(skillSelect, "Javascript", "Javascript");
+                // Add other Web Designer skills and general skills as needed
+            }
+        }
+
+        function addOption(selectElement, value, text) {
+            var option = document.createElement("option");
+            option.value = value;
+            option.text = text;
+            selectElement.add(option);
+        }
+    </script>
+
+</body>
+</html>

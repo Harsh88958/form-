@@ -1,0 +1,64 @@
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <title>Candidate Details</title>
+</head>
+
+<body>
+    <div>
+        <h1 class="alert-primary text-center p-3">Candidate Details</h1>
+        <a href="{% url 'home' %}" class="btn btn-warning" style="
+    position: relative;
+    bottom: 60px;
+    left: 39px;
+" >Add Student</a> 
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Select category</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Mobile:</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Experience</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Follow status</th>
+                    <th scope="col">Selection status</th>
+                </tr>
+            </thead>
+           {% for cd in candidates %}
+             <tbody>
+                <tr>
+                    <th scope="row">{{cd.id}}</th>
+                    <td><a href="{% url 'candidate' cd.id %}">{{cd.select_category}}</a></td>
+                    <td>{{cd.name}}</td>
+                    <td>{{cd.mobile}}</td>
+                    <td>{{cd.email}}</td>
+                    <td>{{cd.experience}}</td>
+                    <td>{{cd.date}}</td>
+                    <td>{{cd.follow_status}}</td>
+                    <td>{{cd.selection_status}}</td>
+                </tr>
+            </tbody>
+           {% endfor %}
+        </table>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</body>
+
+</html>

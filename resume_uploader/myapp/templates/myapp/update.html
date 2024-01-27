@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+{% load myfilter %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        section {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+        #remark{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    {% for st in stu_det %}
+
+    <header>
+        <h1>Update Details</h1>
+    </header>
+
+    <section>
+<form method="post" action="" enctype="multipart/form-data">          
+    {% csrf_token %}
+            <label for="select_category">Select Category</label>
+            <select id="select_category" value="" name="select_category" onchange="updateSkills()">
+               <option value="none" {% if st.select_category == 'none' %}selected{% endif %}>----------</option>
+<option value="Python Developer" {% if st.select_category == 'Python Developer' %}selected{% endif %}>Python Developer</option>
+<option value="Web Designer" {% if st.select_category == 'Web Designer' %}selected{% endif %}>Web Designer</option>
+<option value="Graphic Designer" {% if st.select_category == 'Graphic Designer' %}selected{% endif %}>Graphic Designer</option>
+            </select>
+
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" value="{{ st.name }}">
+
+            <label for="mobile">Mobile</label>
+            <input type="text" id="mobile" name="mobile" value="{{ st.mobile }}">
+
+            <label for="current_location">Current Location</label>
+            <input type="text" id="current_location" name="current_location" value="{{ st.current_location }}">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" value="{{ st.email }}">
+
+            <label>Gender</label>
+<label for="male">
+    <input type="radio" id="male" name="gender" value="male" {% if st.gender == 'male' %}checked{% endif %}> Male
+</label>
+<label for="female">
+    <input type="radio" id="female" name="gender" value="female" {% if st.gender == 'female' %}checked{% endif %}> Female
+</label>
+<label for="other">
+    <input type="radio" id="other" name="gender" value="other" {% if st.gender == 'other' %}checked{% endif %}> Other
+</label>
+
+            <label for="highest_qualification">Highest Qualification</label>
+            <input type="text" id="highest_qualification" name="highest_qualification" value="{{ st.highest_qualification }}">
+
+            <label for="experience">Experience</label>
+            <input type="text" id="experience" name="experience" value="{{ st.experience }}">
+
+            <label for="currnet_ctc">Current CTC</label>
+            <input type="text" id="currnet_ctc" name="currnet_ctc" value="{{ st.currnet_ctc }}">
+
+            <label for="expected_ctc">Expected CTC</label>
+            <input type="text" id="expected_ctc" name="expected_ctc" value="{{ st.expected_ctc }}">
+
+            <label for="working_status">Working Status</label>
+            <input type="text" id="working_status" name="working_status" value="{{ st.working_status }}">
+
+            <label for="notice_period">Notice Period</label>
+            <input type="text" id="notice_period" name="notice_period" value="{{ st.notice_period }}">
+
+            <label for="company_name">Company Name</label>
+            <input type="text" id="company_name" name="company_name" value="{{ st.company_name }}">
+
+            <label for="follow_status">Follow Status</label>
+<select id="follow_status" name="follow_status">
+    <option value="none" {% if st.follow_status == 'none' %}selected{% endif %}>----------</option>
+    <option value="not_started" {% if st.follow_status == 'not_started' %}selected{% endif %}>Not Started</option>
+    <option value="in_progress" {% if st.follow_status == 'in_progress' %}selected{% endif %}>In Progress</option>
+    <option value="completed" {% if st.follow_status == 'completed' %}selected{% endif %}>Completed</option>
+</select>
+
+            <label for="selection_status">Selection Status</label>
+<select id="selection_status" name="selection_status">
+    <option value="none" {% if st.selection_status == 'none' %}selected{% endif %}>----------</option>
+    <option value="pending" {% if st.selection_status == 'pending' %}selected{% endif %}>Pending</option>
+    <option value="accept" {% if st.selection_status == 'accept' %}selected{% endif %}>Accept</option>
+    <option value="rejected" {% if st.selection_status == 'rejected' %}selected{% endif %}>Rejected</option>
+</select>
+
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date" value="{{ st.date|date:'Y-m-d' }}">
+
+           
+           <label for="key_skill">Key Skill</label>
+<select id="key_skill" name="key_skill" multiple>
+    {% for skill in st.key_skill|split:',' %}
+        <option value="{{ skill }}" selected>{{ skill }}</option>
+    {% endfor %}
+    <!-- Options will be dynamically updated based on selected category -->
+</select>
+
+            <label for="skill">Skill</label>
+            <select id="skill" name="skill" multiple>
+    {% for skill in st.skill|split:',' %}
+        <option value="{{ skill }}" selected>{{ skill }}</option>
+    {% endfor %}
+    <!-- Options will be dynamically updated based on selected category -->
+</select>
+
+            <label for="my_file">My File</label>
+            <a href="{{st.my_file}}">{{st.my_file}}</a>
+
+            <label for="remark">Remark</label>
+            <textarea id="remark" name="remark">{{ st.remark }}</textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+ 
+
+    <script>
+        function updateSkills() {
+            var category = document.getElementById("select_category").value;
+            var keySkillSelect = document.getElementById("key_skill");
+            var skillSelect = document.getElementById("skill");
+            
+            // Clear existing options
+            keySkillSelect.innerHTML = "";
+            skillSelect.innerHTML = "";
+
+            // Add options based on the selected category
+            if (category === "Python Developer") {
+                addOption(keySkillSelect, "Python", "Python");
+                addOption(keySkillSelect, "Django", "Django");
+                addOption(keySkillSelect, "Rest API", "Rest API");
+
+                addOption(skillSelect, "Python", "Python");
+                addOption(skillSelect,"Django", "Django");
+                addOption(skillSelect,"Rest API", "Rest API");
+                // Add other Python Developer skills and general skills as needed
+            } else if (category === "Web Designer") {
+                addOption(keySkillSelect, "HTML5 & CSS", "HTML5 & CSS");
+                addOption(keySkillSelect, "Bootstrap", "Bootstrap");
+                addOption(keySkillSelect, "Javascript", "Javascript");
+
+                addOption(skillSelect, "HTML5 & CSS", "HTML5 & CSS");
+                addOption(skillSelect, "Bootstrap", "Bootstrap");
+                addOption(skillSelect, "Javascript", "Javascript");
+                // Add other Web Designer skills and general skills as needed
+            }
+        }
+
+        function addOption(selectElement, value, text) {
+            var option = document.createElement("option");
+            option.value = value;
+            option.text = text;
+            selectElement.add(option);
+        }
+    </script>
+   {% endfor %}
+</body>
+</html>
